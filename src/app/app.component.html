@@ -1,0 +1,118 @@
+<div class="container">
+  <div class="row pt-3">
+    <div class="col-6">
+      <h4>Student Portal</h4>
+    </div>
+    <div class="col-6 text-end">
+      <div class="btn btn-outline-success" (click)="openModal()" data-toggle="modal">Add New</div>
+    </div>
+  </div>
+</div>
+
+<section class="container">
+  @if(studentList.length !=0){
+    <div class="row">
+      @for (sl of studentList; track $index) {
+      <div class="col-3">
+        <div class="card">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-6">
+                <strong>{{sl.name}}</strong>
+              </div>
+              <div class="col-6 text-end">
+                {{sl.mobileno}}
+              </div>
+            </div>
+           
+          </div>
+          <div class="card-body">
+            <p> {{sl.city+' '+sl.state + ' '+ sl.pincode}}</p>
+            <p> {{sl.address}}</p>
+          </div>
+          <div class="card-footer text-center">
+            <div class="row">
+              <div class="col-7">
+                <small> {{sl.email}}</small>
+              </div>
+              <div class="col-5">
+               <button class="btn btn-sm btn-link" (click)="onEdit(sl)"><i class="fa-regular fa-pen-to-square fa-xl"></i></button>|
+               <button class="btn btn-sm btn-link" (click)="onDelete(sl)"><i class="fa-regular fa-trash-can fa-xl"></i></button>
+              </div>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+    }
+    </div>
+  }@else {
+    <div class="row">
+      <div class="col-12 p-4 text-center">
+        <p>No record found. Please add records</p>
+      </div>
+    </div>
+  }
+
+</section>
+  <div id="myModal" class="modal" #myModal>
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" (click)="closeModal()" >&times;</button>
+          <h4 class="modal-title">Create New Student</h4>
+        </div>
+        <div class="modal-body">
+        <div class="row">
+          <div class="col-12">
+            <label for="">Name</label>
+            <input class="form-control form-control-sm" placeholder="Name" [(ngModel)]="studentObj.name">
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-6">
+            <label for="">Mobile No</label>
+            <input class="form-control form-control-sm" placeholder="mobile" [(ngModel)]="studentObj.mobileno">
+          </div>
+          <div class="col-6">
+            <label for="">Email</label>
+            <input class="form-control form-control-sm" placeholder="Email" [(ngModel)]="studentObj.email">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <label for="">City</label>
+            <input class="form-control form-control-sm" placeholder="City" [(ngModel)]="studentObj.city">
+          </div>
+          <div class="col-4">
+            <label for="">State</label>
+            <input class="form-control form-control-sm" placeholder="State" [(ngModel)]="studentObj.state">
+          </div>
+          <div class="col-4">
+            <label for="">Pin Code</label>
+            <input class="form-control form-control-sm" placeholder="Pin Code" [(ngModel)]="studentObj.pincode">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <label for="">Address</label>
+            <textarea rows="3" class="form-control form-control-sm" [(ngModel)]="studentObj.address"></textarea>
+          </div>
+        </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="closeModal()">Close</button>
+          @if(studentObj.id==0){
+            <button type="button" class="btn btn-primary" (click)="saveModal()">Save</button>
+          }@else {
+            <button type="button" class="btn btn-warning" (click)="updateModal()">Update</button>
+          }
+          
+        </div>
+      </div>
+  
+    </div>
+  </div>
+

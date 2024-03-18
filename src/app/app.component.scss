@@ -1,0 +1,29 @@
+.close {
+    float: right !important;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity = 20);
+    opacity: .2;
+}
+button.close {
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+.modal-header .close {
+    margin-top: -2px;
+}
+.modal-header{
+    display: block !important;
+}
+.btn-link {
+    text-decoration: none;
+  }
+  
